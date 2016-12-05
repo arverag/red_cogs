@@ -17,11 +17,11 @@ class Timecog:
     async def time(self):
 
         #Your code will go here
-        url = "https://www.timeanddate.com/time/zones/pst" #build the web adress
+        url = "http://www.worldtimeserver.com/current_time_in_UTC.aspx" #build the web adress
         async with aiohttp.get(url) as response:
             soupObject = BeautifulSoup(await response.text(), "html.parser")
         try:
-            servertime = soupObject.find(class_='ctm-tz').get_text()
+            servertime = soupObject.find(class_='desc').find(class_='fontTS').get_text()
             await self.bot.say('GMS server time is ' + servertime)
         except:
             await self.bot.say("Couldn't load server time.")
