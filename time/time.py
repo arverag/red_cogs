@@ -2,13 +2,13 @@ import discord
 from discord.ext import commands
 
 class Timecog:
+    """My custom cog that does stuff!"""
 
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command()
     async def time(self):
-        """This does stuff!"""
 
         #Your code will go here
         url = "https://www.timeanddate.com/time/zones/pst" #build the web adress
