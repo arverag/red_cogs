@@ -21,7 +21,7 @@ class Timecog:
         async with aiohttp.get(url) as response:
             soupObject = BeautifulSoup(await response.text(), "html.parser")
         try:
-            servertime = soupObject.find(class_='ctm-tz').find('span').find(id_='hourmin0').get_text()
+            servertime = soupObject.find(class_='ctm-tz').find('span').get_text()
             await self.bot.say('GMS server time is ' + servertime)
         except:
             await self.bot.say("Couldn't load server time.")
