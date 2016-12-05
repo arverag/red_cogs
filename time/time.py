@@ -1,5 +1,10 @@
-@commands.command()
-async def time(self):
+import discord
+from discord.ext import commands
+
+class Timecog:
+    
+    @commands.command()
+    async def time(self):
     """What time is it currently in-game?"""
 
     #Your code will go here
@@ -11,3 +16,6 @@ async def time(self):
         await self.bot.say('GMS server time is ' + servertime)
     except:
         await self.bot.say("Couldn't load server time.")
+
+def setup(bot):
+    bot.add_cog(Timecog(bot))
