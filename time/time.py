@@ -23,7 +23,7 @@ class Timecog:
         try:
             servertime = soupObject.find(class_='ctm-tz').find('span').get_text()
             ampm = soupObject.find(class_='ctm_ampm').get_text()
-            await self.bot.say('GMS server time is ' + servertime + ampm)
+            await self.bot.say('GMS server time is ' + ampm)
         except:
             await self.bot.say("Couldn't load server time.")
 
