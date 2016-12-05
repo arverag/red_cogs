@@ -1,2 +1,2 @@
 # red_time
-Cog for RED Discord Bot
+Cogs built for the RED Discord Bot
