@@ -3,6 +3,9 @@ from discord.ext import commands
 
 class Timecog:
     
+    def __init__(self, bot):
+        self.bot = bot
+
     @commands.command()
     async def time(self):
     """What time is it currently in-game?"""
