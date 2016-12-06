@@ -1,7 +1,8 @@
 import discord
 from discord.ext import commands
 import socket
-    
+
+
 class Sstatus:
     """Finds the current in-game server status"""
 
@@ -14,14 +15,15 @@ class Sstatus:
 
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         start = time.clock()
-        result = s.connect_ex(('127.0.0.1', 3306))
+        result = s.connect_ex(('8.31.99.143', 8484))
 
         if result == 0:
-            await self.bot.say('Server responded in ', time.clock()-start ,' seconds')
+            await self.bot.say('Server responded in ', time.clock()-start, ' seconds')
         s.close()
-        except:
+        else:
             await self.bot.say("Server no respondo")
         s.close()
-        
+
+
 def setup(bot):
     bot.add_cog(Sstatus(bot))
