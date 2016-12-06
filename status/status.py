@@ -20,7 +20,7 @@ class Sstatus:
 
         if result == 0:
             elapsed_time = time.process_time() - t
-            await self.bot.say('Server responded in ' .format(elapsed_time) ' seconds.')
+            await self.bot.say('Server responded in ' + str(elapsed_time) + ' seconds.')
         s.close()
 
 
