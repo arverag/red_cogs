@@ -19,8 +19,8 @@ class Sstatus:
         result = s.connect_ex(('8.31.99.143', 8484))
 
         if result == 0:
-            elapsed_time = 'taco'
-            await self.bot.say('Server responded in ' + elapsed_time + ' seconds.')
+            elapsed_time = time.process_time() - t
+            await self.bot.say('Server responded in ' .format(elapsed_time) ' seconds.')
         s.close()
 
 
