@@ -15,7 +15,7 @@ class Timecog:
         #Your code will go here
         servertime = datetime.datetime.utcnow().strftime("%a, %b %d at %H:%M:%S %Z")
         try:
-            await self.bot.say('GMS server time is ' + servertime)
+            await self.bot.say('GMS server time is - ' + servertime)
         except:
             await self.bot.say("Couldn't load server time.")
 
