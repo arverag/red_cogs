@@ -15,12 +15,12 @@ class Sstatus:
 
 
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        start = time.clock()
+        t = time.process_time()
         result = s.connect_ex(('8.31.99.143', 8484))
 
         if result == 0:
-            elapsed = time.clock()-start
-            await self.bot.say('Server responded in ' + elapsed + ' seconds.')
+            elapsed_time = time.process_time() - t
+            await self.bot.say('Server responded in ' + elapsed_time + ' seconds.')
         s.close()
 
 
