@@ -16,7 +16,7 @@ class Sstatus:
 
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         t = time.clock()
-        result = s.connect_ex(('8.31.99.143', 8484))
+        result = s.connect_ex(('88.31.99.143', 8484))
 
         if result == 0:
             elapsed_time = time.clock() - t
