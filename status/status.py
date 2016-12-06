@@ -19,9 +19,9 @@ class Sstatus:
         if result == 0:
             await self.bot.say('Server responded in ', time.clock()-start ,' seconds')
         s.close()
-        else:
+        except:
             await self.bot.say("Server no respondo")
-        s.close()               
+        s.close()
         
 def setup(bot):
     bot.add_cog(Sstatus(bot))
