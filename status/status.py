@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import socket
+import time
 
 
 class Sstatus:
@@ -14,10 +15,11 @@ class Sstatus:
 
 
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        start = time.clock()
         result = s.connect_ex(('8.31.99.143', 8484))
 
         if result == 0:
-            await self.bot.say('Server responded')
+            await self.bot.say('Server responded in ' + time.clock()-start + ' seconds.')
         s.close()
 
 
