@@ -1,11 +1,7 @@
 import discord
 from discord.ext import commands
-try: # check if BeautifulSoup4 is installed
-    from bs4 import BeautifulSoup
-    soupAvailable = True
-except:
-    soupAvailable = False
 import aiohttp
+import datetime
 
 class Timecog:
     """My custom cog that does stuff!"""
@@ -17,11 +13,8 @@ class Timecog:
     async def time(self):
 
         #Your code will go here
-        url = "https://www.timeanddate.com/time/aboututc.html" #build the web adress
-        async with aiohttp.get(url) as response:
-            soupObject = BeautifulSoup(await response.text(), "html.parser")
+        servertime = datetime.datetime.utcnow().strftime("%a %b %d %H:%M:%S %Z %Y")
         try:
-            servertime = soupObject.find(class_='ctm-tz').find('span').get_text()
             await self.bot.say('GMS server time is ' + servertime)
         except:
             await self.bot.say("Couldn't load server time.")
