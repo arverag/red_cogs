@@ -21,6 +21,8 @@ class Sstatus:
         if result == 0:
             elapsed_time = time.clock() - t
             await self.bot.say('GMS Login Server responded in ' + format(elapsed_time, '.3f') + ' seconds :thumbsup:')
+        else:
+            await self.bot.say('The GMS Login Server did not respond in time :saughting:')
         s.close()
 
 
