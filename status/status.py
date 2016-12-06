@@ -20,9 +20,6 @@ class Sstatus:
         if result == 0:
             await self.bot.say('Server responded in ', time.clock()-start, ' seconds')
         s.close()
-        else:
-            await self.bot.say("Server no respondo")
-        s.close()
 
 
 def setup(bot):
