@@ -20,7 +20,7 @@ class Sstatus:
 
         if result == 0:
             elapsed_time = time.clock() - t
-            await self.bot.say('Server responded in ' + format(elapsed_time, '.3f') + ' seconds.')
+            await self.bot.say('GMS Login Server responded in ' + format(elapsed_time, '.3f') + ' seconds.')
         s.close()
 
 
