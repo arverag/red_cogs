@@ -13,7 +13,7 @@ class Timecog:
     async def time(self):
 
         #Your code will go here
-        servertime = datetime.datetime.utcnow().strftime("%a %b %d %H:%M:%S %Z")
+        servertime = datetime.datetime.utcnow().strftime("%a, %b %d at %H:%M:%S %Z")
         try:
             await self.bot.say('GMS server time is ' + servertime)
         except:
