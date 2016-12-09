@@ -9,10 +9,9 @@ class myFF:
 
     @commands.command()
     async def ff(self):
-        """Butts"""
 
         #Your code will go here
-        await self.bot.say("I can do stuff!")
+        await self.bot.say(":saughting:")
 
 def setup(bot):
     bot.add_cog(myFF(bot))
