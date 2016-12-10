@@ -1,3 +1,9 @@
+import discord
+from discord.ext import commands
+import socket
+import time
+
+
 class RBstatus:
     """Finds the current in-game server status"""
 
@@ -13,8 +19,11 @@ class RBstatus:
         result = s.connect_ex(('8.31.99.161', 8585))
 
         if result == 0:
-            elapsed_timeRB = time.clock() - t
-            await self.bot.say('Reboot Channel 1 responded in ' + format(elapsed_timeRB, '.3f') + ' seconds :thumbsup:')
+            elapsed_time = time.clock() - t
+            await self.bot.say('Reboot Channel 1 responded in ' + format(elapsed_time, '.3f') + ' seconds :thumbsup:')
         else:
             await self.bot.say('Reboot Channel 1 did not respond in time :triumph: ')
         s.close()
+        
+def setup(bot):
+    bot.add_cog(RBstatus(bot))
