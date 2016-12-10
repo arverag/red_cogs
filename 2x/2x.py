@@ -23,7 +23,7 @@ class twoXcog:
         self.bot = bot
 
     @commands.command()
-    async def 2x(self):
+    async def next2x(self):
 
         timedict = {}
         timedict['12:00AM'] = 0
