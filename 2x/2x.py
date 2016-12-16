@@ -4,6 +4,7 @@ import urllib.request
 import re
 import time
 import datetime
+import sys
 from datetime import datetime, timedelta
 
 # assumptions (if any of these are false behavior is undefined)
@@ -67,7 +68,8 @@ class twoXcog:
             regex = '<a href="/news/(.+?)/2x-exp-drop-event-(.+?)">' #Gets the link with the event page
             linkPart = re.findall(re.compile(regex),htmltext)[0]
         except:
-            print ("The next 2x event is not announced yet.")
+            await self.bot.say ("The next 2x event is not yet announced in a supported format.")
+            sys.exit()
         eventpageid = linkPart[0]
         monthsanddays = re.findall(re.compile('[0-9]{1,2}'),linkPart[1])
 
