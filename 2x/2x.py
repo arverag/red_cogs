@@ -6,6 +6,7 @@ import time
 import datetime
 import sys
 from datetime import datetime, timedelta
+linkPart = ""
 
 # assumptions (if any of these are false behavior is undefined)
 
