@@ -22,7 +22,7 @@ def __init__(self, bot):
     self.bot = bot
 
 @commands.command()
-async def next2x(self):
+    async def next2x(self):
 
 timedict = {}
 timedict['12:00AM'] = 0
