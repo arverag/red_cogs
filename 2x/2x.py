@@ -68,6 +68,7 @@ class twoXcog:
             regex = '<a href="/news/(.+?)/2x-exp-drop-event-(.+?)">' #Gets the link with the event page
             linkPart = re.findall(re.compile(regex),htmltext)[0]
         except:
+            linkPart = 1
             await self.bot.say ("The next 2x event is not yet announced in a supported format.")
         eventpageid = linkPart[0]
         monthsanddays = re.findall(re.compile('[0-9]{1,2}'),linkPart[1])
