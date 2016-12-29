@@ -16,13 +16,13 @@ from datetime import datetime, timedelta
 # 2x events take place in the current year (this code won't work if it's dec 31 and there's an event on jan 1)
 
 class twoXcog:
-"""Finds the next 2x time"""
+    """Finds the next 2x time"""
 
 def __init__(self, bot):
     self.bot = bot
 
 @commands.command()
-    async def next2x(self):
+async def next2x(self):
 
 timedict = {}
 timedict['12:00AM'] = 0
