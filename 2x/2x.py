@@ -60,7 +60,8 @@ class twoXcog:
 
         currentyear = datetime.utcnow().year
         currenttimepst = datetime.utcnow() + timedelta(hours=pst_timedifference) + timedelta(hours=add_hours_for_testing)
-
+        linkPart = []
+        
         mainPage = ("http://maplestory.nexon.net/news")
 
         try:
