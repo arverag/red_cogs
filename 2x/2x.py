@@ -4,7 +4,6 @@ import urllib.request
 import re
 import time
 import datetime
-import sys
 from datetime import datetime, timedelta
 linkPart = ""
 
@@ -70,7 +69,6 @@ class twoXcog:
             linkPart = re.findall(re.compile(regex),htmltext)[0]
         except:
             await self.bot.say ("The next 2x event is not yet announced in a supported format.")
-            sys.exit()
         eventpageid = linkPart[0]
         monthsanddays = re.findall(re.compile('[0-9]{1,2}'),linkPart[1])
 
