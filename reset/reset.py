@@ -32,11 +32,7 @@ class Resetcog:
                 assert datetime.timedelta(days=7) < then - now <= datetime.timedelta(days=14)
                 assert then.weekday() == _FRI
                 assert then.time() == _3AM
+                await self.bot.say('Time until server reset - ' + i)
                 
-                try:
-                    await self.bot.say('Time until server reset - ' + i)
-                except:
-                    await self.bot.say("Couldn't load server reset time.")
-
 def setup(bot):
     bot.add_cog(Resetcog(bot))
