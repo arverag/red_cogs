@@ -22,7 +22,7 @@ class Resetcog:
                 now = now.combine(now.date(),_3AM)
             else:
                 now = now.combine(now.date(),_3AM) + datetime.timedelta(days=1)
-            await self.bot.say(now + datetime.timedelta((_FRI - now.weekday()) % 7))
+                return now + datetime.timedelta((_FRI - now.weekday()) % 7)
 
         if __name__ == '__main__':
             start = datetime.datetime.now()
