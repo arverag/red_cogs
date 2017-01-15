@@ -10,17 +10,28 @@ class Resetcog:
         self.bot = bot
 
     @commands.command()
-    async def time(self):
+    async def reset(self):
 
         #Your code will go here
-        today = datetime.date.today()
-        friday = today + datetime.timedelta( (3-today.weekday()) %7+1)
-        
-        servertime = datetime.datetime.utcnow().strftime("%a, %b %d at %H:%M:%S %Z")
-        try:
-            await self.bot.say('GMS server time is - ' + servertime)
-        except:
-            await self.bot.say("Couldn't load server time.")
+        _3AM = datetime.time(hour=3)
+        _FRI = 4 # Monday=0 for weekday()
+
+        def next_friday_3am(now):
+            now += datetime.timedelta(days=7)
+            if now.time() < _3AM:
+                now = now.combine(now.date(),_3AM)
+            else:
+                now = now.combine(now.date(),_3AM) + datetime.timedelta(days=1)
+            await self.bot.say(now + datetime.timedelta((_FRI - now.weekday()) % 7))
+
+        if __name__ == '__main__':
+            start = datetime.datetime.now()
+            for i in xrange(7*24*60*60):
+                now = start + datetime.timedelta(seconds=i)
+                then = next_friday_3am(now)
+                assert datetime.timedelta(days=7) < then - now <= datetime.timedelta(days=14)
+                assert then.weekday() == _FRI
+                assert then.time() == _3AM
 
 def setup(bot):
     bot.add_cog(Resetcog(bot))
