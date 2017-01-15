@@ -34,9 +34,9 @@ class Resetcog:
                 assert then.time() == _3AM
                 
                 try:
- 		            await self.bot.say('Time until server reset - ' + i)
-       			except:
-            	    await self.bot.say("Couldn't load server reset time.")
+                    await self.bot.say('Time until server reset - ' + i)
+                except:
+                    await self.bot.say("Couldn't load server reset time.")
 
 def setup(bot):
     bot.add_cog(Resetcog(bot))
