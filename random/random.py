@@ -9,7 +9,7 @@ class Randomcog:
         self.bot = bot
 
     @commands.command()
-    async def time(self):
+    async def random(self):
 
         #Your code will go here
         rando = (randint(0,9))
@@ -19,4 +19,4 @@ class Randomcog:
             await self.bot.say("Couldn't give random number")
 
 def setup(bot):
-    bot.add_cog(Timecog(bot))
+    bot.add_cog(Randomcog(bot))
