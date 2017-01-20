@@ -5,7 +5,6 @@ import re
 import time
 import datetime
 from datetime import datetime, timedelta
-linkPart = ""
 
 # assumptions (if any of these are false behavior is undefined)
 
@@ -15,7 +14,6 @@ linkPart = ""
 # format of times is always ##:## AM or ##:## PM
 # times are always listed in pairs where the first is a start time and the second is an end time
 # 2x events take place in the current year (this code won't work if it's dec 31 and there's an event on jan 1)
-
 
 class twoXcog:
     """Finds the next 2x time"""
@@ -66,24 +64,30 @@ class twoXcog:
         try:
             try:
                 htmltext = urllib.request.urlopen(mainPage).read().decode('utf-8')
-                regex = '<a href="/news/(.+?)/2x-exp-drop-event-(.+?)">' #Gets the link with the event page
-                linkPart = re.findall(re.compile(regex),htmltext)[0]
+                regex = '<h3>[\s\S]*?<a href="/news/(\d+?)/[\w-]*?-([\d-]*)">(.*?)</a>[\s\S]*?<p>(.*?)</p>'
+                match = re.findall(re.compile(regex),htmltext)[0]
+                linktitle = match[2]
+                linkdesc = match[3]
+                if "2x" not in linktitle and "2x" not in linkdesc:
+                    match = []
             except:
-                await self.bot.say ("The next 2x event is not yet announced in a supported format.")
-                sys.exit()
-            eventpageid = linkPart[0]
-            monthsanddays = re.findall(re.compile('[0-9]{1,2}'),linkPart[1])
-
+                await self.bot.say ("The next 2x event is not announced yet in a supported format.")
+            eventpageid = match[0]
+            monthsanddays = re.findall(re.compile('[0-9]{1,2}'),match[1])
+            
             eventPage = "http://maplestory.nexon.net/news/" + eventpageid
             try:
                 htmltext = urllib.request.urlopen(eventPage).read().decode('utf-8')
+                regex = '<h1.*?2x[\s\S]*?(.*?PST[\s\S]*)' #read from 2x section
+                htmltext = re.findall(re.compile(regex),htmltext)[0]
                 regex = '<strong>PST:(.+?)</strong>' #Gets the link with the event data
                 timeList = re.findall(re.compile(regex),htmltext)
                 
                 startTimes = []
                 endTimes = []
                 
-                for i, t in enumerate(timeList):
+                for i in range(0, int(len(monthsanddays)/2)):
+                    t = timeList[i]
                     temp = re.sub(' ', '', t)
                     newList = re.findall(re.compile("[0-9]{1,2}:[0-9]{2}[AP]M"),temp)
                 
@@ -114,7 +118,7 @@ class twoXcog:
                     timeSpan = nextStartTime.replace(microsecond=0) - currenttimepst.replace(microsecond=0)
                     await self.bot.say("The next 2x event starts at " + nextStartTime.strftime("%b %d %Y %H:%M:%S") + " PST (in " + str(timeSpan) + ")")
             except:
-                await self.bot.say ("Either nexon is inconsistent at announcing their 2x exp events, or this plugin is coded by monkeys. We don't know.")
+                await self.bot.say ("Something broke! Try contacting @boardwalk hotel to get it fixed")
         except:
             e = 5 #Try requires an except, and except requires one line.
 def setup(bot):
