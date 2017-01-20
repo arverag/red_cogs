@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from random import randint
+from random import randrange, uniform
 
 class Randomcog:
     """Replies with random number"""
@@ -12,7 +12,7 @@ class Randomcog:
     async def random(self):
 
         #Your code will go here
-        rando = (randint(0,9))
+        rando = randrange(0,9)
         try:
             await self.bot.say('Random number - ' + rando)
         except:
