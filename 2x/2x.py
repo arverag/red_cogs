@@ -4,6 +4,7 @@ import urllib.request
 import re
 import time
 import datetime
+import traceback
 from datetime import datetime, timedelta
 
 # assumptions (if any of these are false behavior is undefined)
@@ -23,7 +24,7 @@ class twoXcog:
 
     @commands.command()
     async def next2x(self):
-
+        
         timedict = {}
         timedict['12:00AM'] = 0
         timedict['1:00AM'] = 1
@@ -49,6 +50,20 @@ class twoXcog:
         timedict['9:00PM'] = 21
         timedict['10:00PM'] = 22
         timedict['11:00PM'] = 23
+
+        monthdict = {}
+        monthdict['january'] = 1
+        monthdict['february'] = 2
+        monthdict['march'] = 3
+        monthdict['april'] = 4
+        monthdict['may'] = 5
+        monthdict['june'] = 6
+        monthdict['july'] = 7
+        monthdict['august'] = 8
+        monthdict['september'] = 9
+        monthdict['october'] = 10
+        monthdict['november'] = 11
+        monthdict['december'] = 12
 
         add_hours_for_testing = 0
 
@@ -81,15 +96,27 @@ class twoXcog:
             except:
                 await self.bot.say ("The next 2x event has not been announced yet in a supported format.")
             eventpageid = match[0]
-            monthsanddays = re.findall(re.compile('[0-9]{1,2}'),match[1])
             
             eventPage = "http://maplestory.nexon.net/news/" + eventpageid
             try:
                 htmltext = urllib.request.urlopen(eventPage).read().decode('utf-8')
-                regex = '<h1.*?2x[\s\S]*?(.*?PST[\s\S]*)' #read from 2x section
+                regex = '(<h1.*?2x[\s\S]*?.*?PST[\s\S]*?)<h' #separate 2x section
                 htmltext = re.findall(re.compile(regex),htmltext)[0]
-                regex = '<strong>PST:(.+?)</strong>' #Gets the link with the event data
+
+                regex = '<strong.*?>[a-zA-Z]*?,\s*([a-zA-Z]*?)\s*([\d].*?),\s*([\d]{4})<.*?\/strong>' #read months and days
+                matches = re.findall(re.compile(regex),htmltext)
+
+                monthsanddays = []
+                #print(matches)
+                for j in range(0, int(len(matches))):
+                    monthsanddays.append(monthdict[matches[j][0].lower()])
+                    monthsanddays.append(matches[j][1])
+                #print(htmltext)
+                #print(monthsanddays)
+
+                regex = '<strong.*?>PST:(.+?)<.*?/strong>' #read times
                 timeList = re.findall(re.compile(regex),htmltext)
+                #print(timeList)
                 
                 startTimes = []
                 endTimes = []
@@ -128,8 +155,19 @@ class twoXcog:
                 
                     timeSpan = nextStartTime.replace(microsecond=0) - currenttimepst.replace(microsecond=0)
                     await self.bot.say("The next 2x event starts at " + nextStartTime.strftime("%b %d %Y %H:%M:%S") + " PST (in " + str(timeSpan) + ")")
-            except:
-                await self.bot.say("Something broke! Try contacting @boardwalk hotel to get it fixed")
+
+                    if len(startTimes) > 1:
+                        await self.bot.say("")
+                        await self.bot.say("These are the 2x events following:")
+                        for k in range(1, min(4,int(len(startTimes)))):
+                            timeSpan = startTimes[k].replace(microsecond=0) - currenttimepst.replace(microsecond=0)
+                            await self.bot.say(startTimes[k].strftime("%b %d %Y %H:%M:%S") + " PST (in " + str(timeSpan) + ")")
+                        if len(startTimes) > 4:
+                            await self.bot.say("... and " + str(len(startTimes) - 4) + " more")
+
+            except Exception as e:
+                await self.bot.say ("Something broke! Try contacting @boardwalk hotel to get it fixed")
+                #traceback.print_exc()
         except:
             e = 5 #Try requires an except, and except requires one line.
 
