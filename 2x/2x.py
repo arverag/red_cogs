@@ -89,6 +89,7 @@ class twoXcog:
                     linkdesc = temp[3]
                     if "2x" in linktitle or "2x" in linkdesc:
                         match = temp
+                        break
 
                 if match == "none":
                     match = []
@@ -141,33 +142,36 @@ class twoXcog:
                 
                 #print(currenttimepst, startTimes)
 
+                stringtosay = ".."
+
                 if len(endTimes) == 0 and len(startTimes) == 0:
-                    await self.bot.say("The next 2x event has not been announced yet.")
+                    stringtosay = stringtosay + "\r\nThe next 2x event has not been announced yet."
                 
                 if len(endTimes) > 0:
                     nextEndtime = endTimes[0]
                     if len(startTimes) == 0 or startTimes[0] - nextEndtime > timedelta(seconds=0):
                         timeSpan = nextEndtime.replace(microsecond=0) - currenttimepst.replace(microsecond=0)
-                        await self.bot.say("The currently running 2x event ends at " + nextEndtime.strftime("%b %d %Y %H:%M:%S") + " PST (in " + str(timeSpan) + ")")
+                        stringtosay = stringtosay + "\r\nThe currently running 2x event ends at " + nextEndtime.strftime("%b %d %Y %H:%M:%S") + " PST (in " + str(timeSpan) + ")"
                 
                 if len(startTimes) > 0:
                     nextStartTime = startTimes[0]
                 
                     timeSpan = nextStartTime.replace(microsecond=0) - currenttimepst.replace(microsecond=0)
-                    await self.bot.say("The next 2x event starts at " + nextStartTime.strftime("%b %d %Y %H:%M:%S") + " PST (in " + str(timeSpan) + ")")
+                    stringtosay = stringtosay + "\r\nThe next 2x event starts at " + nextStartTime.strftime("%b %d %Y %H:%M:%S") + " PST (in " + str(timeSpan) + ")"
 
                     if len(startTimes) > 1:
-                        await self.bot.say("")
-                        await self.bot.say("These are the 2x events following:")
+                        stringtosay = stringtosay + "\r\n\r\nThese are the 2x events following:"
                         for k in range(1, min(4,int(len(startTimes)))):
                             timeSpan = startTimes[k].replace(microsecond=0) - currenttimepst.replace(microsecond=0)
-                            await self.bot.say(startTimes[k].strftime("%b %d %Y %H:%M:%S") + " PST (in " + str(timeSpan) + ")")
+                            stringtosay = stringtosay + "\r\n" + startTimes[k].strftime("%b %d %Y %H:%M:%S") + " PST (in " + str(timeSpan) + ")"
                         if len(startTimes) > 4:
-                            await self.bot.say("... and " + str(len(startTimes) - 4) + " more")
+                            stringtosay = stringtosay + "\r\n... and " + str(len(startTimes) - 4) + " more"
+
+                await self.bot.say(stringtosay)
 
             except Exception as e:
                 await self.bot.say ("Something broke! Try contacting @boardwalk hotel to get it fixed")
-                #traceback.print_exc()
+                traceback.print_exc()
         except:
             e = 5 #Try requires an except, and except requires one line.
 
