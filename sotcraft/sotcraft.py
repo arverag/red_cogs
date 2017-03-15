@@ -3,6 +3,7 @@ from discord.ext import commands
 import aiohttp
 import json
 import urllib
+from urllib.request import urlopen
 url = "https://mcapi.ca/query/47.186.163.211/extensive"
 
 class usersOnline:
