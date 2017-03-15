@@ -16,7 +16,7 @@ class usersOnline:
         url = 'https://mcapi.ca/query/47.186.163.211/extensive'
         response = requests.get(url, verify=True) #Verify is check SSL certificate
         data = response.json()
-        onlineUsers = data[0]['list'][0]
+        onlineUsers = data[0]['list']
         try:
             await self.bot.say('```'+ onlineUsers +'```')
         except:
