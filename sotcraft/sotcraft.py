@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import aiohttp
 import requests
+import simplejson
 
 class usersOnline:
     """Finds users that are online in Sotcraft"""
@@ -14,13 +15,12 @@ class usersOnline:
 
         #Your code will go here
         url = 'https://mcapi.ca/query/47.186.163.211/extensive'
-        response = requests.get(url, verify=True) #Verify is check SSL certificate
-        data = response.json()
-        onlineUsers = data[1]
-        try:
-            await self.bot.say('```'+ onlineUsers +'```')
-        except:
-            await self.bot.say("An error occurred")
+        r = requests.get(url)
+        for item in r.json():
+            try:
+                await self.bot.say(c['list'])
+            except:
+                await self.bot.say("An error occurred")
 
 def setup(bot):
     bot.add_cog(usersOnline(bot))
