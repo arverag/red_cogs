@@ -14,9 +14,9 @@ class usersOnline:
 
         #Your code will go here
         r = requests.get('https://mcapi.ca/query/47.186.163.211/extensive')
-        onlineUsers = r.json('list')
+        onlineUsers = r.json()
         try:
-            await self.bot.say('Users Online: ' + onlineUsers)
+            await self.bot.say('```'+ onlineUsers +'```')
         except:
             await self.bot.say("An error occurred")
 
