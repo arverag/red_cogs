@@ -17,8 +17,8 @@ class usersOnline:
         url = 'https://mcapi.ca/query/47.186.163.211/extensive'
         r = requests.get(url)
         for item in r.json():
-            for c in item['players']:
-                print(c['online'])
+            for c in item['motds']:
+                print(c['ingame'])
 
 def setup(bot):
     bot.add_cog(usersOnline(bot))
