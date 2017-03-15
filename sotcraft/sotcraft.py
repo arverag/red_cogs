@@ -2,9 +2,7 @@ import discord
 from discord.ext import commands
 import aiohttp
 import json
-import urllib
-from urllib.request import urlopen
-url = "https://mcapi.ca/query/47.186.163.211/extensive"
+import requests
 
 class usersOnline:
     """Finds users that are online in Sotcraft"""
@@ -16,9 +14,8 @@ class usersOnline:
     async def sotcraft(self):
 
         #Your code will go here
-        response = urllib.urlopen(url)    
-        data = json.loads(response.read())
-        onlineUsers - data["list"]
+        r = requests.get('https://mcapi.ca/query/47.186.163.211/extensive')
+        onlineUsers = r.json('list')
         try:
             await self.bot.say('Users Online: ' + onlineUsers)
         except:
