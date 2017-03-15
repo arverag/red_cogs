@@ -17,10 +17,7 @@ class usersOnline:
         url = 'https://mcapi.ca/query/47.186.163.211/extensive'
         r = requests.get(url)
         for item in r.json():
-            try:
-                await self.bot.say(c['list'])
-            except:
-                await self.bot.say("An error occurred")
+            print(c['list'])
 
 def setup(bot):
     bot.add_cog(usersOnline(bot))
