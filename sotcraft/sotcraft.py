@@ -18,7 +18,7 @@ class usersOnline:
         r = requests.get(url)
         for item in r.json():
             for c in item['players']:
-            print(c['online'])
+                print(c['online'])
 
 def setup(bot):
     bot.add_cog(usersOnline(bot))
