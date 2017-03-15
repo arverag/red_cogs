@@ -18,7 +18,7 @@ class usersOnline:
         data = response.json()
         onlineUsers = data['list']
         try:
-            await self.bot.say('```'+ onlineUsers +'```')
+            await self.bot.say('```'+ data +'```')
         except:
             await self.bot.say("An error occurred")
 
