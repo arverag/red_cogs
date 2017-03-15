@@ -13,8 +13,10 @@ class usersOnline:
     async def sotcraft(self):
 
         #Your code will go here
-        r = requests.get('https://mcapi.ca/query/47.186.163.211/extensive')
-        onlineUsers = r.json()
+        url = 'https://mcapi.ca/query/47.186.163.211/extensive'
+        response = requests.get(url, verify=True) #Verify is check SSL certificate
+        data = response.json()
+        onlineUsers = data[0]['list'][0]
         try:
             await self.bot.say('```'+ onlineUsers +'```')
         except:
