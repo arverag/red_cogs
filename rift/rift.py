@@ -84,11 +84,11 @@ class Rift:
             return
         for k, v in self.open_rifts.items():
             if v.destination == message.channel:
-                msg = "__{}:__ {}".format(message.author, message.content)
+                msg = "**__{}__**: {}".format(message.author, message.content)
                 msg = escape(msg, mass_mentions=True)
                 await self.bot.send_message(v.source, msg)
             if v.source == message.channel:
-                msg = "__{}:__ {}".format(message.author, message.content)
+                msg = "**__{}__**: {}".format(message.author, message.content)
                 msg = escape(msg, mass_mentions=True)
                 await self.bot.send_message(v.destination, msg)
 
