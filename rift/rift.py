@@ -71,7 +71,9 @@ class Rift:
                                                   channel=author_channel)
             if msg is not None and msg.content.lower() != "exit":
                 try:
-                    await self.bot.send_message(channel, msg.content)
+                    msg = "{}: {}".format(message.author, message.content)
+                    msg = escape(msg, mass_mentions=True)
+                    await self.bot.send_message(v.source, msg)
                 except:
                     await self.bot.say("Couldn't send your message.")
             else:
@@ -80,6 +82,8 @@ class Rift:
         await self.bot.say("Rift closed.")
 
     async def on_message(self, message):
+        if message.author == self.bot.user:
+            return
         for k, v in self.open_rifts.items():
             if v.destination == message.channel:
                 msg = "{}: {}".format(message.author, message.content)
