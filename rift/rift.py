@@ -71,7 +71,7 @@ class Rift:
                                                   channel=author_channel)
             if msg is not None and msg.content.lower() != "exit":
                 try:
-                    await self.bot.send_message(channel, msg.content)
+                    await self.bot.say("Message sent!")
                 except:
                     await self.bot.say("Couldn't send your message.")
             else:
