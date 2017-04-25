@@ -71,7 +71,7 @@ class MMonitor:
                     blankvar = "blankvar"
                 except:
                     await self.bot.say("Script error #1")
-            elif msg is not None and msg.content.lower() in msgfilter:
+            elif msgfilter in msg.content.lower():
                 try:
                     await self.bot.say("Your message may contain words referring to RMT. Your message has been logged and will be reviewed by Discord staff.")
                 except:
@@ -84,7 +84,7 @@ class MMonitor:
     async def on_message(self, message):
         if message.author == self.bot.user:
             return
-        if message.content not in msgfilter:
+        if msgfilter not in message.content:
             return
         for k, v in self.open_rifts.items():
             if v.source == message.channel:
