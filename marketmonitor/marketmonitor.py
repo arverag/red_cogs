@@ -15,8 +15,6 @@ class MMonitor:
         self.bot = bot
         self.open_rifts = {}
     
-    msgfilter = ['$', 'pp', 'paypal', 'moneypak', 'giftcard', 'gift card', 'PM me', 'DM', 'cash']
-
     @commands.command(pass_context=True)
     async def monitor(self, ctx, channel):
         """Allows you to monitor channels through Red
@@ -60,7 +58,8 @@ class MMonitor:
             channel = channels[0]
 
         rift = OpenRift(source=author_channel, destination=channel)
-
+        msgfilter = ['$', 'pp', 'paypal', 'moneypak', 'giftcard', 'gift card', 'PM me', 'DM', 'cash']
+        
         self.open_rifts[author] = rift
         await self.bot.say("Monitor started")
         msg = ""
