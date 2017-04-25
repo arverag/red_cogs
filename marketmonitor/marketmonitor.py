@@ -3,21 +3,20 @@ from discord.ext import commands
 from collections import namedtuple
 from cogs.utils.chat_formatting import escape, pagify
 
-# Commission made for ScarletRaven, who decided to make it public
-# for everyone to enjoy 👍
+# Fork and modification of of Rift by 23
 
-OpenRift = namedtuple("Rift", ["source", "destination"])
+OpenRift = namedtuple("MMonitor", ["source", "destination"])
 
 
-class Rift:
-    """Communicate with others servers/channels!"""
+class MMonitor:
+    """Monitor a specific channel"""
 
     def __init__(self, bot):
         self.bot = bot
         self.open_rifts = {}
 
     @commands.command(pass_context=True)
-    async def riftopen(self, ctx, channel):
+    async def monitor(self, ctx, channel):
         """Makes you able to communicate with other channels through Red
 
         This is cross-server. Type only the channel name or the ID."""
@@ -61,23 +60,21 @@ class Rift:
         rift = OpenRift(source=author_channel, destination=channel)
 
         self.open_rifts[author] = rift
-        await self.bot.say("A rift has been opened! Everything you say "
-                           "will be relayed to that channel.\n"
-                           "Responses will be relayed here.\nType "
-                           "`exit` to quit.")
+        await self.bot.say("Monitor started")
         msg = ""
+        msgfilter = ['$', 'pp', 'paypal', 'moneypak', 'giftcard', 'gift card', 'PM me', 'DM', 'cash']
         while msg == "" or msg is not None:
             msg = await self.bot.wait_for_message(author=author,
                                                   channel=author_channel)
-            if msg is not None and msg.content.lower() != "exit":
+            if msg is not None and msg.content.lower() != "exit" and msg.content.lower() = msgfilter;
                 try:
-                    blankvar = "blankvar"
+                    await self.bot.say("Your message may contain words referring to RMT. Your message has been logged and will be reviewed by Discord staff.")
                 except:
-                    await self.bot.say("Couldn't send your message.")
+                    await self.bot.say("Error #13")
             else:
                 break
         del self.open_rifts[author]
-        await self.bot.say("Rift closed.")
+        await self.bot.say("Stopping monitor.")
 
     async def on_message(self, message):
         if message.author == self.bot.user:
@@ -87,11 +84,6 @@ class Rift:
                 msg = "**__{}__**: {}".format(message.author, message.content)
                 msg = escape(msg, mass_mentions=True)
                 await self.bot.send_message(v.source, msg)
-            if v.source == message.channel:
-                msg = "**__{}__**: {}".format(message.author, message.content)
-                msg = escape(msg, mass_mentions=True)
-                await self.bot.send_message(v.destination, msg)
-
 
 def setup(bot):
-    bot.add_cog(Rift(bot))
+    bot.add_cog(MMonitor(bot))
