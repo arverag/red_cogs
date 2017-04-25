@@ -87,10 +87,10 @@ class MMonitor:
         if message.content not in msgfilter:
             return
         for k, v in self.open_rifts.items():
-            if v.destination == message.channel:
+            if v.source == message.channel:
                 msg = "**__{}__**: {}".format(message.author, message.content)
                 msg = escape(msg, mass_mentions=True)
-                await self.bot.send_message(v.destination, msg)
+                await self.bot.send_message(v.source, msg)
 
 def setup(bot):
     bot.add_cog(MMonitor(bot))
