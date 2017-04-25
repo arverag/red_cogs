@@ -59,14 +59,14 @@ class MMonitor:
 
         rift = OpenRift(source=author_channel, destination=channel)
         msgfilter = ['$', 'pp', 'paypal', 'moneypak', 'giftcard', 'gift card', 'PM me', 'DM', 'cash']
-        
+
         self.open_rifts[author] = rift
         await self.bot.say("Monitor started")
         msg = ""
         while msg == "" or msg is not None:
             msg = await self.bot.wait_for_message(author=author,
                                                   channel=author_channel)
-            if msg is not None and msg.content.lower() != "exit" and msg.content.lower() in msgfilter:
+            if msg.content.lower() in msgfilter:
                 try:
                     await self.bot.say("Your message may contain words referring to RMT. Your message has been logged and will be reviewed by Discord staff.")
                 except:
@@ -85,7 +85,7 @@ class MMonitor:
             if v.source == message.channel:
                 msg = "**__{}__**: {}".format(message.author, message.content)
                 msg = escape(msg, mass_mentions=True)
-                await self.bot.send_message(v.destination, msg)
+                await self.bot.send_message(v.source, msg)
 
 def setup(bot):
     bot.add_cog(MMonitor(bot))
