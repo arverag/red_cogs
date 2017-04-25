@@ -5,7 +5,7 @@ from cogs.utils.chat_formatting import escape, pagify
 
 # Fork and modification of of Rift by 23
 
-OpenRift = namedtuple("MMonitor", ["source", "destination"])
+OpenRift = namedtuple("Rift", ["source", "destination"])
 
 
 class MMonitor:
