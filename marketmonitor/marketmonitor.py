@@ -66,11 +66,11 @@ class MMonitor:
         while msg == "" or msg is not None:
             msg = await self.bot.wait_for_message(author=author,
                                                   channel=author_channel)
-            if msg is not None and msg.content.lower() != "exit" and msg.content.lower() is in msgfilter:
+            if msg is not None and msg.content.lower() != "exit" and msg.content.lower() not in msgfilter:
                 try:
-                    await self.bot.say("Your message may contain words referring to RMT. Your message has been logged and will be reviewed by Discord staff.")
+                    blankvar = "blankvar"
                 except:
-                    await self.bot.say("Error #13")
+                    await self.bot.say("Your message may contain words referring to RMT. Your message has been logged and will be reviewed by Discord staff.")
             else:
                 break
         del self.open_rifts[author]
