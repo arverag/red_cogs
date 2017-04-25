@@ -66,7 +66,7 @@ class MMonitor:
         while msg == "" or msg is not None:
             msg = await self.bot.wait_for_message(author=author,
                                                   channel=author_channel)
-            if msg is not None and msg.content.lower() in msgfilter and msg.content.lower() != "exit";
+            if msg is not None and msg.content.lower() in msgfilter and msg.content.lower() != "exit"
                 try:
                     await self.bot.say("Your message may contain words referring to RMT. Your message has been logged and will be reviewed by Discord staff.")
                 except:
