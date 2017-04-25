@@ -74,6 +74,8 @@ class MMonitor:
             elif msg is not None and msg.content.lower() in msgfilter:
                 try:
                     await self.bot.say("Your message may contain words referring to RMT. Your message has been logged and will be reviewed by Discord staff.")
+                except:
+                    await self.bot.say("Script error #2")
             else:
                 break
         del self.open_rifts[author]
