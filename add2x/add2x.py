@@ -1,11 +1,7 @@
 import discord
 from discord.ext import commands
-import urllib.request
-import re
-import time
-import datetime
-import traceback
-from datetime import datetime, timedelta
+from collections import namedtuple
+from cogs.utils.chat_formatting import escape, pagify
 
 class new2x:
 
