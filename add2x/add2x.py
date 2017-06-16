@@ -22,10 +22,11 @@ class new2x:
 
         def check(m):
             try:
-                await self.bot.say(m.content);
                 return (m.content)
             except:
                 return False
+                
+        await self.bot.say(m.content);
 
 def setup(bot):
     bot.add_cog(new2x(bot))
