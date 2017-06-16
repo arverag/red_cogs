@@ -1,0 +1,31 @@
+import discord
+from discord.ext import commands
+import urllib.request
+import re
+import time
+import datetime
+import traceback
+from datetime import datetime, timedelta
+
+class new2x:
+
+    """Finds the next 2x time"""
+
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.command(pass_context=True)
+    async def add2x(self, ctx, channel):
+
+        author = ctx.message.author
+        author_channel = ctx.message.channel
+
+        def check(m):
+            try:
+                await self.bot.say(m.content);
+                return (m.content)
+            except:
+                return False
+
+def setup(bot):
+    bot.add_cog(new2x(bot))
