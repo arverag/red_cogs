@@ -47,7 +47,7 @@ class twoXcog:
                     raise Exception()
             except:
                 await self.bot.say ("The next 2x event has not been announced yet in a supported format.")
-            
+
             eventPage = "https://e8tdwagy36.execute-api.us-west-2.amazonaws.com/prod/getTimeUntilNextEvent"
             try:
                 htmltext = urllib.request.urlopen(eventPage).read()
@@ -56,13 +56,13 @@ class twoXcog:
 
                 regex = '<pre>(.*?)</pre>' #read months and days
                 matches = re.findall(re.compile(regex),htmltext)
-                
+
                 #print(currenttimepst, startTimes)
                 stringtosay = ".."
 
                 if len(endTimes) == 0:
                     stringtosay = stringtosay + "\r\nThe next 2x event has not been announced yet."
-                
+
                 except:
                     nextEndtime = endTimes[0]
                     if len(startTimes) == 0 or startTimes[0] - nextEndtime > timedelta(seconds=0):
