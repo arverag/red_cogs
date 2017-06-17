@@ -13,10 +13,10 @@ class new2x:
 
         author = ctx.message.author
         author_channel = ctx.message.channel
-        sentmsg = ctx.message
+        sentmsg = ctx.message.
 
 
-        await self.bot.say('Message: '.format(sentmsg));
+        await self.bot.say('Message: ' + sentmsg);
 
 def setup(bot):
     bot.add_cog(new2x(bot))
