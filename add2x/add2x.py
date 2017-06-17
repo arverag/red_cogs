@@ -13,7 +13,7 @@ class new2x:
 
         author = ctx.message.author
         author_channel = ctx.message.channel
-        sentmsg = ctx.message.
+        sentmsg = ctx.message
 
 
         await self.bot.say('Message: '.format(author));
