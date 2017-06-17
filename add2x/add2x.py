@@ -1,7 +1,5 @@
 import discord
 from discord.ext import commands
-from collections import namedtuple
-from cogs.utils.chat_formatting import escape, pagify
 
 class new2x:
 
@@ -15,14 +13,10 @@ class new2x:
 
         author = ctx.message.author
         author_channel = ctx.message.channel
+        sentmsg = ctx.message
 
-        def check(m):
-            try:
-                return (m.content)
-            except:
-                return False
-                
-        await self.bot.say(m.content);
+
+        await self.bot.say('Message: '.format(sentmsg));
 
 def setup(bot):
     bot.add_cog(new2x(bot))
