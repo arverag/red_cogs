@@ -10,15 +10,14 @@ class twoX:
         self.bot = bot
 
     @commands.command()
-    async def test2x(self):
+    async def next2x(self):
         """This does stuff!"""
 
         #Your code will go here
         website = 'http://nintendo.com/'
         r = requests.get(website)
-        data = r.text
-        soup = BeautifulSoup(data, 'html.parser')
-        for datapull in soup.find_all('a', attrs={'class':'change-region'}):
+        soup = BeautifulSoup(r.text, 'lxml')
+        for datapull in soup.find_all('body'):
             await self.bot.say(datapull.text)
 
 def setup(bot):
