@@ -14,7 +14,7 @@ class twoX:
         """This does stuff!"""
 
         #Your code will go here
-        website = 'http://nintendo.com/'
+        website = 'https://e8tdwagy36.execute-api.us-west-2.amazonaws.com/prod/getTimeUntilNextEvent'
         r = requests.get(website)
         soup = BeautifulSoup(r.text, 'lxml')
         for datapull in soup.find_all('body'):
