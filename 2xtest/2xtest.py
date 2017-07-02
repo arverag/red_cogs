@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-import requests
+import urllib2
 from bs4 import BeautifulSoup
 
 class twoX:
@@ -15,7 +15,7 @@ class twoX:
 
         #Your code will go here
         website = 'https://e8tdwagy36.execute-api.us-west-2.amazonaws.com/prod/getTimeUntilNextEvent'
-        page = requests.urlopen(website)
+        page = urllib2.urlopen(website)
 
         soup = BeautifulSoup(page, 'html.parser')
 
