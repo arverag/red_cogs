@@ -14,16 +14,11 @@ class twoX:
         """This does stuff!"""
 
         #Your code will go here
-        website = 'https://e8tdwagy36.execute-api.us-west-2.amazonaws.com/prod/getTimeUntilNextEvent'
+        website = 'http://imzelkova.com/twitch'
         page = requests.get(website)
-
-        soup = BeautifulSoup(page, 'html.parser')
-
-        prebox = soup.find('pre')
-
-        twoxtime = prebox.text.strip()
-
-        await self.bot.say(twoxtime)
+        soup = BeautifulSoup(page.text, 'html.parser')
+        for testthing in soup.find_all('span'):
+            await self.bot.say(testthing.text)
 
 def setup(bot):
     bot.add_cog(twoX(bot))
