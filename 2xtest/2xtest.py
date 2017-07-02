@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-import urllib2
+import requests
 from bs4 import BeautifulSoup
 
 class twoX:
