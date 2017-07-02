@@ -18,7 +18,10 @@ class twoX:
         r = requests.get(website)
         soup = BeautifulSoup(r.text, 'lxml')
         for datapull in soup.find_all('body'):
-            await self.bot.say(datapull.text)
+            if datapull.text != null:
+                await self.bot.say("The next 2x is scheduled in:" + datapull.text + ".")
+            else:
+                await self.bot.say("I don't think 2x is scheduled.")
 
 def setup(bot):
     bot.add_cog(twoX(bot))
