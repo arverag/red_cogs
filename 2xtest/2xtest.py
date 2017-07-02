@@ -15,7 +15,7 @@ class twoX:
 
         #Your code will go here
         website = 'https://e8tdwagy36.execute-api.us-west-2.amazonaws.com/prod/getTimeUntilNextEvent'
-        page = urllib2.urlopen(website)
+        page = requests.urlopen(website)
 
         soup = BeautifulSoup(page, 'html.parser')
 
