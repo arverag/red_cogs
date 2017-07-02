@@ -18,7 +18,7 @@ class twoX:
         r = requests.get(website)
         soup = BeautifulSoup(r.text, 'lxml')
         for datapull in soup.find_all('body'):
-            if datapull.text != null:
+            if datapull.text is None:
                 await self.bot.say("The next 2x is scheduled in:" + datapull.text + ".")
             else:
                 await self.bot.say("I don't think 2x is scheduled.")
