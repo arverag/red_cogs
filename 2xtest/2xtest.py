@@ -14,11 +14,12 @@ class twoX:
         """This does stuff!"""
 
         #Your code will go here
-        website = 'http://imzelkova.com/twitch'
-        page = requests.get(website)
-        soup = BeautifulSoup(page.text, 'html.parser')
-        for testthing in soup.find_all('span'):
-            await self.bot.say(testthing.text)
+        website = 'http://nintendo.com/'
+        r = requests.get(website)
+        data = r.text
+        soup = BeautifulSoup(data, 'html.parser')
+        for datapull in soup.find_all('a', attrs={'class':'change-region'}):
+            await self.bot.say(datapull.text)
 
 def setup(bot):
     bot.add_cog(twoX(bot))
