@@ -9,7 +9,7 @@ class new2x:
         self.bot = bot
 
     @commands.command(pass_context=True)
-    async def add2x(self, ctx, user, channel):
+    async def add2x(self, ctx):
 
         author = ctx.message.author
         author_channel = ctx.message.channel
