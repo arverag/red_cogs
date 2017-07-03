@@ -22,7 +22,7 @@ class twoX:
                 await self.bot.say("I don't think 2x is scheduled.")
             elif "!" in datapull.text:
                 newval = re.sub(r'!', "", datapull.text)
-                await self.bot.say("2x is active for another ``" + newval + "``!")
+                await self.bot.say("2x is active for another __**" + newval + "!**__")
             else:
                 await self.bot.say("The next 2x is scheduled in: " + datapull.text + ".")
 
