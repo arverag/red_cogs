@@ -11,11 +11,10 @@ class twoX:
         self.bot = bot
 
     @commands.command()
-    async def next2x(self, context):
+    async def next2x(self):
         """Checks current 2x status"""
 
         #Your code will go here
-        server = context.message.server
         website = 'https://kp8h6rdrwl.execute-api.us-west-2.amazonaws.com/prod/getTimeUntilNextEvent'
         r = requests.get(website)
         soup = BeautifulSoup(r.text, 'lxml')
@@ -28,7 +27,7 @@ class twoX:
             else:
                 pulledtext = datapull.text
                 embed = discord.Embed(title='**The next 2x is scheduled in:**', description=pulledtext, color=self.green)
-                await self.bot.say(server, embed=embed)
+                await self.bot.say(embed=embed)
     
     @commands.command()
     async def check2x(self):
