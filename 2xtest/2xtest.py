@@ -12,7 +12,7 @@ class twoX:
 
     @commands.command()
     async def next2x(self):
-        """This does stuff!"""
+        """Checks current 2x status"""
 
         #Your code will go here
         website = 'https://kp8h6rdrwl.execute-api.us-west-2.amazonaws.com/prod/getTimeUntilNextEvent'
@@ -27,5 +27,14 @@ class twoX:
             else:
                 await self.bot.say("The next 2x is scheduled in: " + datapull.text + ".")
 
+    async def check2x(self):
+        """Displays known 2x dates and times"""
+        
+        website = 'https://ijgfbhygk9.execute-api.us-west-2.amazonaws.com/prod/getEventTimes'
+        r = requests.get(website)
+        soup = BeautifulSoup(r.text, 'lxml')
+        for datapull in soup.find_all('body'):
+            await self.bot.say(datapull.text)
+                
 def setup(bot):
     bot.add_cog(twoX(bot))
