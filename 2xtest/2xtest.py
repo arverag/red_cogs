@@ -9,6 +9,10 @@ class twoX:
 
     def __init__(self, bot):
         self.bot = bot
+        self.green = discord.Color.green()
+        self.orange = discord.Color.orange()
+        self.red = discord.Color.red()
+        self.blue = discord.Color.blue()
 
     @commands.command()
     async def next2x(self):
