@@ -9,14 +9,14 @@ class new2x:
         self.bot = bot
 
     @commands.command(pass_context=True)
-    async def add2x(self, ctx):
+    async def add2x(self, ctx, date: str=None):
 
         author = ctx.message.author
         author_channel = ctx.message.channel
         sentmsg = ctx.message
 
 
-        await self.bot.say('Message: {}'.format(author));
+        await self.bot.say('Message: {}'.format(date));
 
 def setup(bot):
     bot.add_cog(new2x(bot))
