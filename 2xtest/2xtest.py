@@ -26,15 +26,16 @@ class twoX:
                 await self.bot.say("2x is active for another __**" + newval + "!**__")
             else:
                 await self.bot.say("The next 2x is scheduled in: " + datapull.text + ".")
-
+    
+    @commands.command()
     async def check2x(self):
         """Displays known 2x dates and times"""
         
-        website2 = 'https://ijgfbhygk9.execute-api.us-west-2.amazonaws.com/prod/getEventTimes'
-        r2 = requests.get(website2)
-        soup2 = BeautifulSoup(r.text, 'lxml')
-        for datapull2 in soup2.find_all('body'):
-            await self.bot.say(datapull2.text)
+        website = 'https://ijgfbhygk9.execute-api.us-west-2.amazonaws.com/prod/getEventTimes'
+        r = requests.get(website)
+        soup = BeautifulSoup(r.text, 'lxml')
+        for datapull in soup.find_all('body'):
+            await self.bot.say(datapull.text)
                 
 def setup(bot):
     bot.add_cog(twoX(bot))
