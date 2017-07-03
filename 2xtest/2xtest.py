@@ -37,7 +37,7 @@ class twoX:
                 r2 = requests.get(website2)
                 soup2 = BeautifulSoup(r2.text, 'lxml')
                 for datapull2 in soup2.find_all('body'):
-                pulledtext2 = datapull2.text
+                    pulledtext2 = datapull2.text
                 embed2 = discord.Embed(title='**2x Schedule**', description=pulledtext2, color=self.orange)
                 pulledtext = datapull.text
                 embed = discord.Embed(title='**The next 2x is scheduled in:**', description=pulledtext, color=self.orange)
