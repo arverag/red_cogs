@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 
 class twoX:
-    """My custom cog that does stuff!"""
+    """Checks Boardwalks site for 2x times!"""
 
     def __init__(self, bot):
         self.bot = bot
@@ -14,14 +14,17 @@ class twoX:
         """This does stuff!"""
 
         #Your code will go here
-        website = 'https://e8tdwagy36.execute-api.us-west-2.amazonaws.com/prod/getTimeUntilNextEvent'
+        website = 'https://kp8h6rdrwl.execute-api.us-west-2.amazonaws.com/prod/getTimeUntilNextEvent'
         r = requests.get(website)
         soup = BeautifulSoup(r.text, 'lxml')
         for datapull in soup.find_all('body'):
-            if datapull.text != "nope":
-                await self.bot.say("The next 2x is scheduled in: " + datapull.text + ".")
-            else:
+            if "nope" in datapull.text:
                 await self.bot.say("I don't think 2x is scheduled.")
+            elif "!" in datapull.text:
+                newval = re.sub(r'!', "", datapull.text)
+                await self.bot.say("2x is active for another ``" + newval + "``!")
+            else:
+                await self.bot.say("The next 2x is scheduled in: " + datapull.text + ".")
 
 def setup(bot):
     bot.add_cog(twoX(bot))
