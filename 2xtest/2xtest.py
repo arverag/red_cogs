@@ -41,7 +41,9 @@ class twoX:
         r = requests.get(website)
         soup = BeautifulSoup(r.text, 'lxml')
         for datapull in soup.find_all('body'):
-            await self.bot.say("```"+datapull.text+"```")
+            pulledtext = datapull.text
+            embed = discord.Embed(title='**2x Schedule**', description=pulledtext, color=self.orange)
+            await self.bot.say(embed=embed)
                 
 def setup(bot):
     bot.add_cog(twoX(bot))
