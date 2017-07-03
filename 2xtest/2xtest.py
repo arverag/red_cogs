@@ -11,7 +11,7 @@ class twoX:
         self.bot = bot
 
     @commands.command()
-    async def next2x(self):
+    async def next2x(self, context):
         """Checks current 2x status"""
 
         #Your code will go here
