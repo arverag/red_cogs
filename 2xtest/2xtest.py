@@ -35,7 +35,7 @@ class twoX:
         r = requests.get(website)
         soup = BeautifulSoup(r.text, 'lxml')
         for datapull in soup.find_all('body'):
-            await self.bot.say(datapull.text)
+            await self.bot.say("```"+datapull.text+"```")
                 
 def setup(bot):
     bot.add_cog(twoX(bot))
