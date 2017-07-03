@@ -28,7 +28,6 @@ class twoX:
                 await self.bot.say(embed=embed)
             elif "!" in datapull.text:
                 newval = re.sub(r'!', "", datapull.text)
-                await self.bot.say("2x is active for another __**" + newval + "!**__")
                 pulledtext = ("__**" + newval + "**__ left!")
                 embed = discord.Embed(title=':tada: **2x is active!** :tada:', description=pulledtext, color=self.green)
                 await self.bot.say(embed=embed)
