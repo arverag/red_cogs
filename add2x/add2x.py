@@ -16,7 +16,7 @@ class new2x:
         sentmsg = ctx.message
 
 
-        await self.bot.say('Message: ' + ctx.message.author.mention);
+        await self.bot.say('Message: '.format(ctx.message));
 
 def setup(bot):
     bot.add_cog(new2x(bot))
