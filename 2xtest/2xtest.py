@@ -54,6 +54,37 @@ class twoX:
             pulledtext = datapull.text
             embed = discord.Embed(title='**2x Schedule**', description=pulledtext, color=self.orange)
             await self.bot.say(embed=embed)
-                
+            
+        website = 'https://ijgfbhygk9.execute-api.us-west-2.amazonaws.com/prod/getEventTimes'
+        r = requests.get(website)
+        soup = BeautifulSoup(r.text, 'lxml')
+        for datapull in soup.find_all('body'):
+            pulledtext = datapull.text
+            pulledsplit = pulledtext.split()
+            pulledlen = len(pulledsplit)
+            if pulledlen < 9:
+                timesheet = "Nope"
+                embed = discord.Embed(title='**2x Schedule**', description=timesheet, color=self.orange)
+                await self.bot.say(embed=embed)
+            elif pulledlen > 19 :
+                timesheet = "The dumbass mod put too many 2x times on the schedule."
+                embed = discord.Embed(title='**2x Schedule**', description=timesheet, color=self.orange)
+                await self.bot.say(embed=embed)
+            elif pulledlen >= 18 :
+                timesheet = (pulledtext.split()[0] + " | " + pulledtext.split()[1] +" "+ pulledtext.split()[2] )
+                timesheet += (pulledtext.split()[3] + " | " + pulledtext.split()[4] +" "+ pulledtext.split()[5] )
+                timesheet += (pulledtext.split()[6] + " | " + pulledtext.split()[7] +" "+ pulledtext.split()[8] )
+                timesheet += (pulledtext.split()[9] + " | " + pulledtext.split()[10] +" "+ pulledtext.split()[11] )
+                timesheet += (pulledtext.split()[12] + " | " + pulledtext.split()[13] +" "+ pulledtext.split()[14] )
+                timesheet += (pulledtext.split()[15] + " | " + pulledtext.split()[16] +" "+ pulledtext.split()[17] )
+                embed = discord.Embed(title='**2x Schedule**', description=timesheet, color=self.orange)
+                await self.bot.say(embed=embed)
+            elif pulledlen >= 9 :
+                timesheet = (pulledtext.split()[0] + " | " + pulledtext.split()[1] +" "+ pulledtext.split()[2] )
+                timesheet += (pulledtext.split()[3] + " | " + pulledtext.split()[4] +" "+ pulledtext.split()[5] )
+                timesheet += (pulledtext.split()[6] + " | " + pulledtext.split()[7] +" "+ pulledtext.split()[8] )
+                embed = discord.Embed(title='**2x Schedule**', description=timesheet, color=self.orange)
+                await self.bot.say(embed=embed)
+
 def setup(bot):
     bot.add_cog(twoX(bot))
