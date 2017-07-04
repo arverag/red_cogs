@@ -43,7 +43,7 @@ class twoX:
                     pulledtext = datapull.text
                     pulledsplit = pulledtext.split()
                     pulledlen = len(pulledsplit)
-                    if pulledlen < 9 | "nope" in datapull.text:
+                    if pulledlen < 9 or "nope" in datapull.text:
                         timesheet = "Nope"
                         embed = discord.Embed(title='**2x Schedule**', description=timesheet, color=self.orange)
                         await self.bot.say(embed=embed)
@@ -98,7 +98,7 @@ class twoX:
             pulledtext = datapull.text
             pulledsplit = pulledtext.split()
             pulledlen = len(pulledsplit)
-            if pulledlen < 9 | pulledtext == "Nope":
+            if pulledlen < 9 or pulledtext == "Nope":
                 timesheet = "Nope"
                 embed = discord.Embed(title='**2x Schedule**', description=timesheet, color=self.orange)
                 await self.bot.say(embed=embed)
