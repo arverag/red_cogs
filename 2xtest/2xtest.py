@@ -98,11 +98,7 @@ class twoX:
             pulledtext = datapull.text
             pulledsplit = pulledtext.split()
             pulledlen = len(pulledsplit)
-            if pulledlen < 9 or datapull.text == Null:
-                timesheet = "Nope"
-                embed = discord.Embed(title='**2x Schedule**', description=timesheet, color=self.orange)
-                await self.bot.say(embed=embed)
-            elif pulledlen > 28 :
+            if pulledlen > 28 :
                 timesheet = "The dumbass mod put too many 2x times on the schedule."
                 embed = discord.Embed(title='**2x Schedule**', description=timesheet, color=self.orange)
                 await self.bot.say(embed=embed)
@@ -131,6 +127,10 @@ class twoX:
                 timesheet = (pulledtext.split()[0] + " | " + pulledtext.split()[1] +" "+ pulledtext.split()[2] +"\n")
                 timesheet += (pulledtext.split()[3] + " | " + pulledtext.split()[4] +" "+ pulledtext.split()[5] +"\n")
                 timesheet += (pulledtext.split()[6] + " | " + pulledtext.split()[7] +" "+ pulledtext.split()[8] )
+                embed = discord.Embed(title='**2x Schedule**', description=timesheet, color=self.orange)
+                await self.bot.say(embed=embed)
+            else:
+                timesheet = "Nope"
                 embed = discord.Embed(title='**2x Schedule**', description=timesheet, color=self.orange)
                 await self.bot.say(embed=embed)
 
