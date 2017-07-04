@@ -43,12 +43,24 @@ class twoX:
                     pulledtext = datapull.text
                     pulledsplit = pulledtext.split()
                     pulledlen = len(pulledsplit)
-                    if pulledlen < 9:
+                    if pulledlen < 9 | "nope" in datapull.text:
                         timesheet = "Nope"
                         embed = discord.Embed(title='**2x Schedule**', description=timesheet, color=self.orange)
                         await self.bot.say(embed=embed)
-                    elif pulledlen > 19 :
+                    elif pulledlen > 28 :
                         timesheet = "The dumbass mod put too many 2x times on the schedule."
+                        embed = discord.Embed(title='**2x Schedule**', description=timesheet, color=self.orange)
+                        await self.bot.say(embed=embed)
+                    elif pulledlen >= 27 :
+                        timesheet = (pulledtext.split()[0] + " | " + pulledtext.split()[1] +" "+ pulledtext.split()[2] +"\n")
+                        timesheet += (pulledtext.split()[3] + " | " + pulledtext.split()[4] +" "+ pulledtext.split()[5] +"\n")
+                        timesheet += (pulledtext.split()[6] + " | " + pulledtext.split()[7] +" "+ pulledtext.split()[8] +"\n\n")
+                        timesheet += (pulledtext.split()[9] + " | " + pulledtext.split()[10] +" "+ pulledtext.split()[11] +"\n")
+                        timesheet += (pulledtext.split()[12] + " | " + pulledtext.split()[13] +" "+ pulledtext.split()[14] +"\n")
+                        timesheet += (pulledtext.split()[15] + " | " + pulledtext.split()[16] +" "+ pulledtext.split()[17] +"\n\n")
+                        timesheet += (pulledtext.split()[18] + " | " + pulledtext.split()[19] +" "+ pulledtext.split()[20] +"\n")
+                        timesheet += (pulledtext.split()[21] + " | " + pulledtext.split()[22] +" "+ pulledtext.split()[23] +"\n")
+                        timesheet += (pulledtext.split()[24] + " | " + pulledtext.split()[25] +" "+ pulledtext.split()[26] )
                         embed = discord.Embed(title='**2x Schedule**', description=timesheet, color=self.orange)
                         await self.bot.say(embed=embed)
                     elif pulledlen >= 18 :
@@ -86,12 +98,24 @@ class twoX:
             pulledtext = datapull.text
             pulledsplit = pulledtext.split()
             pulledlen = len(pulledsplit)
-            if pulledlen < 9:
+            if pulledlen < 9 | pulledtext == "Nope":
                 timesheet = "Nope"
                 embed = discord.Embed(title='**2x Schedule**', description=timesheet, color=self.orange)
                 await self.bot.say(embed=embed)
-            elif pulledlen > 19 :
+            elif pulledlen > 28 :
                 timesheet = "The dumbass mod put too many 2x times on the schedule."
+                embed = discord.Embed(title='**2x Schedule**', description=timesheet, color=self.orange)
+                await self.bot.say(embed=embed)
+            elif pulledlen >= 27 :
+                timesheet = (pulledtext.split()[0] + " | " + pulledtext.split()[1] +" "+ pulledtext.split()[2] +"\n")
+                timesheet += (pulledtext.split()[3] + " | " + pulledtext.split()[4] +" "+ pulledtext.split()[5] +"\n")
+                timesheet += (pulledtext.split()[6] + " | " + pulledtext.split()[7] +" "+ pulledtext.split()[8] +"\n\n")
+                timesheet += (pulledtext.split()[9] + " | " + pulledtext.split()[10] +" "+ pulledtext.split()[11] +"\n")
+                timesheet += (pulledtext.split()[12] + " | " + pulledtext.split()[13] +" "+ pulledtext.split()[14] +"\n")
+                timesheet += (pulledtext.split()[15] + " | " + pulledtext.split()[16] +" "+ pulledtext.split()[17] +"\n\n")
+                timesheet += (pulledtext.split()[18] + " | " + pulledtext.split()[19] +" "+ pulledtext.split()[20] +"\n")
+                timesheet += (pulledtext.split()[21] + " | " + pulledtext.split()[22] +" "+ pulledtext.split()[23] +"\n")
+                timesheet += (pulledtext.split()[24] + " | " + pulledtext.split()[25] +" "+ pulledtext.split()[26] )
                 embed = discord.Embed(title='**2x Schedule**', description=timesheet, color=self.orange)
                 await self.bot.say(embed=embed)
             elif pulledlen >= 18 :
