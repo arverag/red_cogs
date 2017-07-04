@@ -88,12 +88,9 @@ class Rift:
             return
         for k, v in self.open_rifts.items():
             if v.destination == message.channel:
-                avatar = member.avatar_url if member.avatar else member.default_avatar_url
-                msg = "{}".format(message.author, message.content)
+                msg = "**__{}__**: {}".format(message.author, message.content)
                 msg = escape(msg, mass_mentions=True)
-                embed = discord.Embed(color=self.orange, description=msg)
-                embed.set_author(name='{0.name}#{0.discriminator} ({0.id})'.format(member), icon_url=avatar)
-                await self.bot.send_message(v.source, embed=embed)
+                await self.bot.send_message(v.source, msg)
             if v.source == message.channel:
                 msg = "**__{}__**: {}".format(message.author, message.content)
                 msg = escape(msg, mass_mentions=True)
