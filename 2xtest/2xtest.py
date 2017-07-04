@@ -47,13 +47,13 @@ class twoX:
     async def check2x(self):
         """Displays known 2x dates and times"""
         
-        website = 'https://ijgfbhygk9.execute-api.us-west-2.amazonaws.com/prod/getEventTimes'
-        r = requests.get(website)
-        soup = BeautifulSoup(r.text, 'lxml')
-        for datapull in soup.find_all('body'):
-            pulledtext = datapull.text
-            embed = discord.Embed(title='**2x Schedule**', description=pulledtext, color=self.orange)
-            await self.bot.say(embed=embed)
+        #website = 'https://ijgfbhygk9.execute-api.us-west-2.amazonaws.com/prod/getEventTimes'
+        #r = requests.get(website)
+        #soup = BeautifulSoup(r.text, 'lxml')
+        #for datapull in soup.find_all('body'):
+        #    pulledtext = datapull.text
+        #    embed = discord.Embed(title='**2x Schedule**', description=pulledtext, color=self.orange)
+        #    await self.bot.say(embed=embed)
             
         website = 'https://ijgfbhygk9.execute-api.us-west-2.amazonaws.com/prod/getEventTimes'
         r = requests.get(website)
