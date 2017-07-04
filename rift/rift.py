@@ -15,6 +15,10 @@ class Rift:
     def __init__(self, bot):
         self.bot = bot
         self.open_rifts = {}
+        self.green = discord.Color.green()
+        self.orange = discord.Color.orange()
+        self.red = discord.Color.red()
+        self.blue = discord.Color.blue()
 
     @commands.command(pass_context=True)
     async def riftopen(self, ctx, channel):
@@ -84,9 +88,12 @@ class Rift:
             return
         for k, v in self.open_rifts.items():
             if v.destination == message.channel:
-                msg = "**__{}__**: {}".format(message.author, message.content)
+                avatar = member.avatar_url if member.avatar else member.default_avatar_url
+                msg = "{}".format(message.author, message.content)
                 msg = escape(msg, mass_mentions=True)
-                await self.bot.send_message(v.source, msg)
+                embed = discord.Embed(color=self.orange, description=msg)
+                embed.set_author(name='{0.name}#{0.discriminator} ({0.id})'.format(member), icon_url=avatar)
+                await self.bot.send_message(v.source, embed=embed)
             if v.source == message.channel:
                 msg = "**__{}__**: {}".format(message.author, message.content)
                 msg = escape(msg, mass_mentions=True)
