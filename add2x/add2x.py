@@ -9,6 +9,7 @@ class new2x:
         self.bot = bot
 
     @commands.command(pass_context=True)
+    @checks.mod_or_permissions(administrator=True)
     async def add2x(self, ctx, date: str=None):
 
         author = ctx.message.author
