@@ -28,11 +28,11 @@ class twoX:
                 await self.bot.say(embed=embed)
             elif "!" in datapull.text:
                 newval = re.sub(r'!', "", datapull.text)
-                pulledtext = (":watch: __**" + newval + "**__ left!")
+                pulledtext = ("__**" + newval + "**__ left!")
                 embed = discord.Embed(title=':tada: **2x is active!** :tada:', description=pulledtext, color=self.green)
                 await self.bot.say(embed=embed)
             else:
-                pulledtext = datapull.text
+                pulledtext = (":watch: " + datapull.text + ".")
                 embed = discord.Embed(title='**The next 2x is scheduled in:**', description=pulledtext, color=self.orange)
                 await self.bot.say(embed=embed)
                 
