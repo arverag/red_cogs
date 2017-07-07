@@ -24,11 +24,11 @@ class twoX:
         soup = BeautifulSoup(r.text, 'lxml')
         for datapull in soup.find_all('body'):
             if "nope" in datapull.text:
-                embed = discord.Embed(title="**I don't think 2x is scheduled.**", color=self.red)
+                embed = discord.Embed(title="**I don't think 2x is scheduled. :thinking:**", color=self.red)
                 await self.bot.say(embed=embed)
             elif "!" in datapull.text:
                 newval = re.sub(r'!', "", datapull.text)
-                pulledtext = ("__**" + newval + "**__ left!")
+                pulledtext = (":watch: __**" + newval + "**__ left!")
                 embed = discord.Embed(title=':tada: **2x is active!** :tada:', description=pulledtext, color=self.green)
                 await self.bot.say(embed=embed)
             else:
@@ -44,7 +44,7 @@ class twoX:
                     pulledsplit = pulledtext.split()
                     pulledlen = len(pulledsplit)
                     if pulledlen > 28 :
-                        timesheet = "The dumbass mod put too many 2x times on the schedule."
+                        timesheet = "The dumbass mod put too many 2x times on the schedule. :rage:"
                         embed = discord.Embed(title='**2x Schedule**', description=timesheet, color=self.orange)
                         await self.bot.say(embed=embed)
                     elif pulledlen >= 27 :
